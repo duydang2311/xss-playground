@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { assets } from '$app/paths';
 	import { page } from '$app/stores';
-	import type { PageData } from '.svelte-kit/types/src/routes/$types';
+	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 
 	export let data: PageData;
@@ -19,8 +19,11 @@
 	async function fetchLanguages() {
 		return (await (await fetch(`${assets}/languages.json`)).json()) as string[];
 	}
-	function onInput(ev: InputEvent) {
-		$page.url.searchParams.set('default', languages[Number(ev.target.value)]);
+	function onInput(ev: Event) {
+		$page.url.searchParams.set(
+			'default',
+			languages[Number((ev.target as HTMLSelectElement).value)]
+		);
 		goto($page.url.search).then((_) => {
 			select.focus();
 		});
