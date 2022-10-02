@@ -1,44 +1,58 @@
-<div class="lds-ring">
-	<div />
-	<div />
-	<div />
-	<div />
+<div class="spinner">
+	<div class="bounce1" />
+	<div class="bounce2" />
+	<div class="bounce3" />
 </div>
 
 <style>
-	.lds-ring {
+	.spinner {
+		margin: 100px auto 0;
+		width: 70px;
+		text-align: center;
+	}
+
+	.spinner > div {
+		width: 18px;
+		height: 18px;
+		background-color: #ff3e00;
+
+		border-radius: 100%;
 		display: inline-block;
-		position: relative;
-		width: 80px;
-		height: 80px;
+		-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+		animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 	}
-	.lds-ring div {
-		box-sizing: border-box;
-		display: block;
-		position: absolute;
-		width: 64px;
-		height: 64px;
-		margin: 8px;
-		border: 8px solid #fff;
-		border-radius: 50%;
-		animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-		border-color: #ff3e00 transparent transparent transparent;
+
+	.spinner .bounce1 {
+		-webkit-animation-delay: -0.32s;
+		animation-delay: -0.32s;
 	}
-	.lds-ring div:nth-child(1) {
-		animation-delay: -0.45s;
+
+	.spinner .bounce2 {
+		-webkit-animation-delay: -0.16s;
+		animation-delay: -0.16s;
 	}
-	.lds-ring div:nth-child(2) {
-		animation-delay: -0.3s;
-	}
-	.lds-ring div:nth-child(3) {
-		animation-delay: -0.15s;
-	}
-	@keyframes lds-ring {
-		0% {
-			transform: rotate(0deg);
-		}
+
+	@-webkit-keyframes sk-bouncedelay {
+		0%,
+		80%,
 		100% {
-			transform: rotate(360deg);
+			-webkit-transform: scale(0);
+		}
+		40% {
+			-webkit-transform: scale(1);
+		}
+	}
+
+	@keyframes sk-bouncedelay {
+		0%,
+		80%,
+		100% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		40% {
+			-webkit-transform: scale(1);
+			transform: scale(1);
 		}
 	}
 </style>
