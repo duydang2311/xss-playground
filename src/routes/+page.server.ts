@@ -1,5 +1,7 @@
 import type { Actions } from '.svelte-kit/types/src/routes/sverdle/$types';
 
+export const prefetch = true;
+
 export const actions: Actions = {
 	default: async ({ cookies, request }) => {
 		const formData = await request.formData();

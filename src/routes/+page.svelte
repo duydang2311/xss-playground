@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import { circIn, circOut } from 'svelte/easing';
 	import CommentForm from './CommentForm.svelte';
 	import Comment from './Comment.svelte';
 	import Spinner from '$lib/Spinner.svelte';
+	import { fly } from 'svelte/transition';
 	async function fetchComments() {
-		return (await fetch('/comments')).json();
+		return JSON.parse((await (await fetch('/comments')).text()) || '[]') as string[];
 	}
 </script>
 
@@ -17,17 +18,17 @@
 	<h1>Stored XSS Playground</h1>
 	<CommentForm />
 	{#await fetchComments()}
-		<Spinner />
+		<section transition:fly={{ y: 40, easing: circIn, duration: 300 }} class="spinner-section">
+			<Spinner />
+		</section>
 	{:then comments}
-		{#if comments && comments.length}
-			<ol>
-				{#each comments.slice().reverse() as comment, i (i)}
-					<li>
-						<Comment text={comment} />
-					</li>
-				{/each}
-			</ol>
-		{/if}
+		<ol transition:fly={{ y: 20, delay: 300, duration: 300, easing: circOut }}>
+			{#each comments.slice().reverse() as comment, i (i)}
+				<li>
+					<Comment text={comment} />
+				</li>
+			{/each}
+		</ol>
 	{/await}
 </section>
 
@@ -43,5 +44,10 @@
 	ol {
 		margin-block-start: 0vh;
 		max-width: 50%;
+	}
+
+	.spinner-section {
+		/* position: absolute; */
+		top: 120%;
 	}
 </style>
