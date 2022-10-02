@@ -1,8 +1,4 @@
-import type { Actions, PageServerLoad } from '.svelte-kit/types/src/routes/sverdle/$types';
-
-export const load: PageServerLoad = ({ cookies }) => {
-	return { comments: JSON.parse(cookies.get('comments') || '[]') as string[] };
-};
+import type { Actions } from '.svelte-kit/types/src/routes/sverdle/$types';
 
 export const actions: Actions = {
 	default: async ({ cookies, request }) => {
