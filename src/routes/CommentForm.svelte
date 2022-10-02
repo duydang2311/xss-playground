@@ -1,6 +1,6 @@
 <form method="post" action="/">
 	<label for="comment"> Bình luận </label>
-	<textarea name="comment" id="comment" placeholder="Nhập bình luận..." />
+	<textarea name="comment" id="comment" placeholder="Nhập bình luận..." spellcheck="false" />
 	<button type="submit">Submit</button>
 </form>
 

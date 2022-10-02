@@ -39,7 +39,7 @@
 						<label for="name"> Nhập tên của bạn </label>
 					</td>
 					<td>
-						<input name="name" id="name" type="text" value={data.name} />
+						<input name="name" id="name" type="text" value={data.name} spellcheck="false" />
 					</td>
 				</tr>
 				<tr>
@@ -47,7 +47,15 @@
 						<label for="age"> Nhập tuổi của bạn </label>
 					</td>
 					<td>
-						<input name="age" id="age" type="text" value={data.age} required aria-required />
+						<input
+							name="age"
+							id="age"
+							type="text"
+							value={data.age}
+							required
+							aria-required
+							spellcheck="false"
+						/>
 					</td>
 				</tr>
 				<tr>
@@ -58,7 +66,7 @@
 			</tbody>
 		</table>
 	</form>
-	{#if data}
+	{#if data.age}
 		<p bind:this={result}>
 			{@html getResult(data)}
 		</p>
@@ -74,5 +82,8 @@
 	}
 	table {
 		border-spacing: 1rem;
+	}
+	p {
+		font-weight: bold;
 	}
 </style>
