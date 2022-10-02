@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let text: string;
+	console.log(text);
 </script>
 
 <p>
