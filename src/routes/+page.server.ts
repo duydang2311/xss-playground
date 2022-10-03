@@ -11,6 +11,7 @@ export const actions: Actions = {
 		const comments = JSON.parse(cookies.get('comments') || '[]') as string[];
 		comments.push(formData.get('comment')!.toString());
 		cookies.set('comments', JSON.stringify(comments), {
+			secure: false,
 			httpOnly: false
 		});
 	}
